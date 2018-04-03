@@ -1,0 +1,161 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "528e09110155b65fa3c20b7822b904597925682993d95a5a9c18d7cf6d1aaca4"
+        },
+        "host-environment-markers": {
+            "implementation_name": "cpython",
+            "implementation_version": "3.6.4",
+            "os_name": "posix",
+            "platform_machine": "x86_64",
+            "platform_python_implementation": "CPython",
+            "platform_release": "16.7.0",
+            "platform_system": "Darwin",
+            "platform_version": "Darwin Kernel Version 16.7.0: Wed Oct  4 00:17:00 PDT 2017; root:xnu-3789.71.6~1/RELEASE_X86_64",
+            "python_full_version": "3.6.4",
+            "python_version": "3.6",
+            "sys_platform": "darwin"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.6"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.doubanio.com/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "arrow": {
+            "hashes": [],
+            "version": "==0.10.0"
+        },
+        "certifi": {
+            "hashes": [],
+            "version": "==2018.1.18"
+        },
+        "chardet": {
+            "hashes": [],
+            "version": "==3.0.4"
+        },
+        "cytoolz": {
+            "hashes": [],
+            "version": "==0.8.2"
+        },
+        "docker": {
+            "hashes": [],
+            "version": "==3.2.1"
+        },
+        "docker-pycreds": {
+            "hashes": [],
+            "version": "==0.2.2"
+        },
+        "gevent": {
+            "hashes": [],
+            "version": "==1.2.2"
+        },
+        "greenlet": {
+            "hashes": [],
+            "version": "==0.4.13"
+        },
+        "idna": {
+            "hashes": [],
+            "version": "==2.5"
+        },
+        "python-dateutil": {
+            "hashes": [],
+            "version": "==2.7.2"
+        },
+        "requests": {
+            "hashes": [],
+            "version": "==2.18.1"
+        },
+        "six": {
+            "hashes": [],
+            "version": "==1.11.0"
+        },
+        "toolz": {
+            "hashes": [],
+            "version": "==0.9.0"
+        },
+        "urllib3": {
+            "hashes": [],
+            "version": "==1.21.1"
+        },
+        "websocket-client": {
+            "hashes": [],
+            "version": "==0.47.0"
+        }
+    },
+    "develop": {
+        "appnope": {
+            "hashes": [],
+            "markers": "sys_platform == 'darwin'",
+            "version": "==0.1.0"
+        },
+        "backcall": {
+            "hashes": [],
+            "version": "==0.1.0"
+        },
+        "decorator": {
+            "hashes": [],
+            "version": "==4.2.1"
+        },
+        "ipython": {
+            "hashes": [],
+            "version": "==6.3.0"
+        },
+        "ipython-genutils": {
+            "hashes": [],
+            "version": "==0.2.0"
+        },
+        "jedi": {
+            "hashes": [],
+            "version": "==0.11.1"
+        },
+        "parso": {
+            "hashes": [],
+            "version": "==0.1.1"
+        },
+        "pexpect": {
+            "hashes": [],
+            "markers": "sys_platform != 'win32'",
+            "version": "==4.4.0"
+        },
+        "pickleshare": {
+            "hashes": [],
+            "version": "==0.7.4"
+        },
+        "prompt-toolkit": {
+            "hashes": [],
+            "version": "==1.0.15"
+        },
+        "ptyprocess": {
+            "hashes": [],
+            "version": "==0.5.2"
+        },
+        "pygments": {
+            "hashes": [],
+            "version": "==2.2.0"
+        },
+        "simplegeneric": {
+            "hashes": [],
+            "version": "==0.8.1"
+        },
+        "six": {
+            "hashes": [],
+            "version": "==1.11.0"
+        },
+        "traitlets": {
+            "hashes": [],
+            "version": "==4.3.2"
+        },
+        "wcwidth": {
+            "hashes": [],
+            "version": "==0.1.7"
+        }
+    }
+}

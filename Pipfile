@@ -1,0 +1,24 @@
+[[source]]
+
+url = "https://pypi.doubanio.com/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+arrow = "==0.10.0"
+cytoolz = "==0.8.2"
+gevent = "==1.2.2"
+requests = "==2.18.1"
+docker = "==3.2.1"
+
+
+[dev-packages]
+
+ipython = "*"
+
+
+[requires]
+
+python_version = "3.6"
