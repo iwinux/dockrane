@@ -10,14 +10,17 @@ from .query import ImageQuery
 
 
 def print_images_table(images):
-    table = BeautifulTable(120, BeautifulTable.ALIGN_LEFT)
+    table = BeautifulTable(150, BeautifulTable.ALIGN_LEFT)
     table.column_headers = ['ID', 'Size', 'Age', 'Tag']
     table.width_exceed_policy = BeautifulTable.WEP_ELLIPSIS
     table.set_style(BeautifulTable.STYLE_COMPACT)
-    row_keys = ['short_id', 'size_human', 'age_human', 'tag']
+    row_keys = ['short_id', 'size_human', 'age_human']
 
     for image in images:
-        table.append_row([image[key] for key in row_keys])
+        for tag in image['tags']:
+            row = [image[key] for key in row_keys]
+            row.append(tag)
+            table.append_row(row)
 
     print(table)
 
