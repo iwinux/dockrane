@@ -40,19 +40,22 @@ class ImageQuery:
             parent = self._find_parent(img)
             size = self._calc_size(img, parent)
             size_human = humanize_bytes(size)
+            tags = sorted(img.tags)
+            main_tag = tags[0] if tags else ''
 
             if size < min_size:
                 continue
 
             yield {
                 'id': img.id.replace('sha256:', ''),
-                'instance': img,
+                'short_id': img.short_id.replace('sha256:', ''),
                 'has_parent': bool(parent),
                 'age': age,
                 'age_human': age_human,
                 'size': size,
                 'size_human': size_human,
-                'tags': img.tags,
+                'tags': tags,
+                'tag': main_tag,
             }
 
     def _calc_size(self, image, parent):
