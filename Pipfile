@@ -12,6 +12,8 @@ cytoolz = "==0.8.2"
 gevent = "==1.2.2"
 requests = "==2.18.1"
 docker = "==3.2.1"
+tablib = "==0.12.1"
+beautifultable = "==0.5.0"
 
 
 [dev-packages]
