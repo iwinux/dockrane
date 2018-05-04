@@ -26,6 +26,6 @@ def run(args) -> None:
     client.close()
 
 
-def add_command(commands) -> None:
+def register(commands) -> None:
     parser = commands.add_parser('list-host-ports')
     parser.set_defaults(command=run)

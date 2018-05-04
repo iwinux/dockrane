@@ -47,7 +47,7 @@ def run(args) -> None:
     client.close()
 
 
-def add_command(commands) -> None:
+def register(commands) -> None:
     parser = commands.add_parser('list-images')
     parser.add_argument('-f', '--format', default='table')
     parser.add_argument('--sort-by', default='tag')
