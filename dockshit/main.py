@@ -3,8 +3,9 @@ import sys
 
 from .commands import list_host_ports
 from .commands import list_images
+from .commands import transfer_image
 
-SUB_COMMANDS = [list_host_ports, list_images]
+SUB_COMMANDS = [list_host_ports, list_images, transfer_image]
 
 
 def main():
