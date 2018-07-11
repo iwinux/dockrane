@@ -1,7 +1,7 @@
 from beautifultable import BeautifulTable
 from itertools import chain
 
-from dockshit.client import get_docker_client
+from dockrane.client import get_docker_client
 
 
 def run(args) -> None:

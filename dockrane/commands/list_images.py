@@ -3,8 +3,8 @@ import re
 
 from beautifultable import BeautifulTable
 
-from dockshit.client import get_docker_client
-from dockshit.query import ImageQuery
+from dockrane.client import get_docker_client
+from dockrane.query import ImageQuery
 
 
 def print_images_table(images) -> None:

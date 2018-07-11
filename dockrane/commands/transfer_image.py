@@ -4,7 +4,7 @@ import sys
 from docker.errors import ImageNotFound
 from progress.bar import Bar
 
-from dockshit.client import get_docker_client
+from dockrane.client import get_docker_client
 
 
 def split_tag(name, strip_namespace=False):

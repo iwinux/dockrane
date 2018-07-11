@@ -18,4 +18,4 @@ ipython = "*"
 python_version = "3.6"
 
 [scripts]
-shit = "python -m dockshit.main"
+dockrane = "python -m dockrane.main"
