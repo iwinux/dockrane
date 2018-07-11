@@ -2,8 +2,8 @@ from operator import itemgetter
 import re
 
 from beautifultable import BeautifulTable
+from docker import DockerClient
 
-from dockrane.client import get_docker_client
 from dockrane.query import ImageQuery
 
 
@@ -30,29 +30,19 @@ OUTPUT_PRINTERS = {
 SORT_KEYS = {'age', 'size', 'tag'}
 
 
-def run(args) -> None:
-    tag = args.tag
-    if args.tag_pattern:
-        tag = re.compile(args.tag_pattern)
+def run(docker: DockerClient, options: dict) -> None:
+    tag = options['tag']
 
-    client = get_docker_client()
-    query = ImageQuery(client)
-    images = query.filter(tag=tag, min_size=args.size_gte, min_age=args.age_gte)
+    if options['tag_pattern']:
+        tag = re.compile(options['tag_pattern'])
 
-    if args.sort_by in SORT_KEYS:
-        images = sorted(images, key=itemgetter(args.sort_by))
+    query = ImageQuery(docker)
+    images = query.filter(
+        tag=tag, min_size=options['size_gte'], min_age=options['age_gte']
+    )
 
-    print_output = OUTPUT_PRINTERS.get(args.format)
+    if options['sort_by'] in SORT_KEYS:
+        images = sorted(images, key=itemgetter(options['sort_by']))
+
+    print_output = OUTPUT_PRINTERS.get(options['format'])
     print_output(images)
-    client.close()
-
-
-def register(commands) -> None:
-    parser = commands.add_parser('list-images')
-    parser.add_argument('-f', '--format', default='table')
-    parser.add_argument('--sort-by', default='tag')
-    parser.add_argument('--age-gte', type=int, default=0)
-    parser.add_argument('--size-gte', type=int, default=0)
-    parser.add_argument('-t', '--tag')
-    parser.add_argument('--tag-pattern')
-    parser.set_defaults(command=run)

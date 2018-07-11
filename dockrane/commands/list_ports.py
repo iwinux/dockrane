@@ -1,12 +1,11 @@
-from beautifultable import BeautifulTable
 from itertools import chain
 
-from dockrane.client import get_docker_client
+from beautifultable import BeautifulTable
+from docker import DockerClient
 
 
-def run(args) -> None:
-    client = get_docker_client()
-    containers = client.containers.list(all=True)
+def run(docker: DockerClient) -> None:
+    containers = docker.containers.list(all=True)
 
     table = BeautifulTable(80, BeautifulTable.ALIGN_LEFT)
     table.column_headers = ['ID', 'Name', 'Port']
@@ -23,9 +22,3 @@ def run(args) -> None:
             table.append_row((c.short_id, c.name, port))
 
     print(table)
-    client.close()
-
-
-def register(commands) -> None:
-    parser = commands.add_parser('list-host-ports')
-    parser.set_defaults(command=run)

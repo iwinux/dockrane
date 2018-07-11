@@ -1,10 +1,9 @@
 import posixpath
 import sys
 
+from docker import DockerClient
 from docker.errors import ImageNotFound
 from progress.bar import Bar
-
-from dockrane.client import get_docker_client
 
 
 def split_tag(name, strip_namespace=False):
@@ -67,55 +66,40 @@ def push_image(client, dest_repo, dest_tag):
     bar.clearln()
 
 
-def run(args) -> None:
-    src_name, src_tag = split_tag(args.src, strip_namespace=True)
+def run(docker: DockerClient, options: dict) -> None:
+    src_name, src_tag = split_tag(options['src'], strip_namespace=True)
 
-    if args.dest:
+    if options['dest']:
         dest_name, dest_tag = split_tag(
-            args.dest, strip_namespace=bool(args.namespace)
+            options['dest'], strip_namespace=bool(options['namespace'])
         )
     else:
         dest_name = src_name
         dest_tag = src_tag
 
-    dest_repo = posixpath.join(args.namespace, dest_name)
+    dest_repo = posixpath.join(options['namespace'], dest_name)
     dest = '{repo}:{tag}'.format(repo=dest_repo, tag=dest_tag)
 
-    print('Source: {src}'.format(src=args.src))
+    print('Source: {src}'.format(src=options['src']))
     print('Dest: {dest}'.format(dest=dest))
 
-    if args.dry_run:
+    if options['dry_run']:
         return
 
-    client = get_docker_client()
-
     try:
-        image = client.images.get(args.src)
+        image = docker.images.get(options['src'])
     except ImageNotFound:
-        if args.pull:
-            src_repo, _ = split_tag(args.src)
-            image = pull_image(client, args.src)
+        if options['pull']:
+            src_repo, _ = split_tag(options['src'])
+            image = pull_image(docker, options['src'])
         else:
-            sys.exit('image `%s` not found' % args.src)
+            sys.exit('image `%s` not found' % options['src'])
 
     image.tag(dest_repo, dest_tag)
 
-    if args.push:
+    if options['push']:
         try:
-            push_image(client, dest_repo, dest_tag)
+            push_image(docker, dest_repo, dest_tag)
             print('Pushed {dest}'.format(dest=dest))
         except KeyboardInterrupt:
             pass
-
-    client.close()
-
-
-def register(commands) -> None:
-    parser = commands.add_parser('transfer-image')
-    parser.add_argument('src')
-    parser.add_argument('dest', nargs='?', default='')
-    parser.add_argument('--dry-run', action='store_true', default=False)
-    parser.add_argument('--namespace', default='')
-    parser.add_argument('--pull', action='store_true', default=False)
-    parser.add_argument('--push', action='store_true', default=False)
-    parser.set_defaults(command=run)
