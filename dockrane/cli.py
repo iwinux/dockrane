@@ -38,11 +38,12 @@ def cmd_list_images(docker: DockerClient, **options: dict) -> None:
 
 @main.command(name='transfer', help='transfer image')
 @click.argument('src')
-@click.argument('dest', nargs=-1, required=True)
+@click.argument('dest', nargs=-1)
 @click.option('--dry-run', is_flag=True, default=False)
 @click.option('--namespace', default='')
 @click.option('--pull', is_flag=True, default=False)
 @click.option('--push', is_flag=True, default=False)
+@click.pass_obj
 def cmd_transfer(docker: DockerClient, **options: dict) -> None:
     transfer_image.run(docker, options)
 
